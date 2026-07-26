@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pupi Indumentaria</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-container">
+      <div class="logo-texto">PUPI<span>.</span>INDUMENTARIA</div>
+      <nav class="navbar">
+        <ul class="menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="carrito-icono" id="btn-abrir-carrito">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="carrito-contador" id="carrito-contador">0</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="banner" id="inicio">
+      <div class="banner-texto">
+        <h1>NO SOLO ES ROPA, ES UNA FORMA DE DECIR QUIÉN SOS</h1>
+        <p>20% OFF POR TRANSFERENCIA · CONSULTÁ Y COMPRÁ POR WHATSAPP</p>
+      </div>
+    </section>
+
+    <section class="categorias-principales">
+      <div class="categorias-grid">
+        <div class="categoria-item" onclick="filtrarPorCategoria('todos')">TODOS</div>
+        <div class="categoria-item" onclick="filtrarPorCategoria('hombre')">HOMBRE</div>
+        <div class="categoria-item" onclick="filtrarPorCategoria('mujer')">MUJER</div>
+        <div class="categoria-item" onclick="filtrarPorCategoria('mixto')">MIXTO</div>
+      </div>
+    </section>
+
+    <section id="productos" class="productos-destacados">
+      <h2>Productos</h2>
+      <div class="filtros" id="filtros"></div>
+      <div class="subfiltros" id="subfiltros"></div>
+      <div class="productos-container" id="productos-container">
+        <p class="sin-resultados">Cargando productos...</p>
+      </div>
+    </section>
+
+    <section class="beneficios">
+      <div class="beneficio-item">
+        <i class="fas fa-truck"></i>
+        <h3>Enviamos tu compra</h3>
+        <p>Coordinamos por WhatsApp</p>
+      </div>
+      <div class="beneficio-item">
+        <i class="fas fa-percentage"></i>
+        <h3>20% de descuento</h3>
+        <p>Pagando con transferencia</p>
+      </div>
+      <div class="beneficio-item">
+        <i class="fab fa-whatsapp"></i>
+        <h3>Compra directa</h3>
+        <p>Todo se cierra por WhatsApp</p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacto">
+    <div class="footer-container">
+      <div class="footer-columna">
+        <h3>Navegación</h3>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-columna">
+        <h3>Medios de pago</h3>
+        <p>3 cuotas sin interés</p>
+        <p>20% OFF en transferencias</p>
+      </div>
+      <div class="footer-columna">
+        <h3>Contactanos</h3>
+        <p id="footer-telefono"><i class="fas fa-phone"></i> —</p>
+        <p><i class="fas fa-map-marker-alt"></i> Tte. Gral. Donato Álvarez 8370, Córdoba</p>
+        <div class="redes-sociales">
+          <a href="https://www.instagram.com/pupiindumentariaarguello" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" id="footer-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/pupiindumentaria" target="_blank"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-columna">
+        <h3>Cómo comprar</h3>
+        <p>Elegí tus productos, agregalos al carrito y tocá "Comprar por WhatsApp". Te va a llevar directo al chat con el pedido armado.</p>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p>© 2026 PUPI INDUMENTARIA - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- Panel del carrito -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="carrito-panel" id="carrito-panel">
+    <div class="carrito-header">
+      <h3>Tu carrito</h3>
+      <i class="fas fa-times cerrar-modal" style="position:static;color:var(--ink);" id="btn-cerrar-carrito"></i>
+    </div>
+    <div class="carrito-items" id="carrito-items"></div>
+    <div class="carrito-footer">
+      <div class="carrito-total"><span>Total</span><span>$<span id="carrito-total">0</span></span></div>
+      <button class="btn-comprar" id="btn-finalizar-compra"><i class="fab fa-whatsapp"></i> Comprar por WhatsApp</button>
+    </div>
+  </aside>
+
+  <!-- Modal de imagen ampliada -->
+  <div class="modal" id="modal-imagen">
+    <span class="cerrar-modal" id="cerrar-modal-imagen">&times;</span>
+    <img id="modal-imagen-src" style="max-height:90vh;max-width:90vw;border-radius:10px;">
+  </div>
+
+  <!-- Modal de detalle de producto -->
+  <div class="modal" id="modal-detalle">
+    <div class="modal-detalle-contenido">
+      <span class="cerrar-modal" id="cerrar-modal-detalle">&times;</span>
+      <div class="modal-detalle-grid" id="modal-detalle-body"></div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/tienda.js"></script>
+</body>
+</html>

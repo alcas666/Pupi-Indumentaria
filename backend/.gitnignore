@@ -1,0 +1,5 @@
+# Archivo de variables de entorno (claves privadas)
+.env
+
+# Carpeta pesada de librerías instaladas
+node_modules/

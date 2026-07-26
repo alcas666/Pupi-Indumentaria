@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Pupi Indumentaria</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="admin-body">
+
+  <!-- Pantalla de login -->
+  <div id="vista-login" class="admin-login">
+    <p class="logo-mini">PUPI INDUMENTARIA</p>
+    <h1>Ingresar al panel</h1>
+    <form id="form-login">
+      <div class="campo">
+        <label>Usuario</label>
+        <input type="text" id="login-usuario" required autocomplete="username">
+      </div>
+      <div class="campo">
+        <label>Contraseña</label>
+        <input type="password" id="login-clave" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-guardar" style="width:100%;">Ingresar</button>
+      <p class="error-msg" id="login-error"></p>
+    </form>
+  </div>
+
+  <!-- Panel de administración -->
+  <div id="vista-panel" class="admin-panel" style="display:none;">
+    <div class="admin-header">
+      <h1>Panel de PUPI INDUMENTARIA</h1>
+      <button class="btn-salir" id="btn-salir">Cerrar sesión</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="productos">Productos</button>
+      <button class="admin-tab" data-tab="config">Configuración</button>
+    </div>
+
+    <!-- TAB: Productos -->
+    <div id="tab-productos">
+      <div class="tarjeta">
+        <h2 id="titulo-form-producto">Agregar producto</h2>
+        <form id="form-producto">
+          <input type="hidden" id="producto-id">
+          <div class="form-grid">
+            <div class="campo">
+              <label>Nombre</label>
+              <input type="text" id="producto-nombre" required>
+            </div>
+            <div class="campo">
+              <label>Categoría</label>
+              <select id="producto-categoria" required>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="mixto">Mixto</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label>Subcategoría (ej: remeras, jeans, camperas)</label>
+              <input type="text" id="producto-subcategoria" placeholder="remeras">
+            </div>
+            <div class="campo">
+              <label>Precio</label>
+              <input type="number" id="producto-precio" min="0" step="1" required>
+            </div>
+            <div class="campo">
+              <label>Descuento (%)</label>
+              <input type="number" id="producto-descuento" min="0" max="100" value="0">
+            </div>
+            <div class="campo">
+              <label>Estado</label>
+              <select id="producto-activo">
+                <option value="1">Visible en la tienda</option>
+                <option value="0">Oculto</option>
+              </select>
+            </div>
+            <div class="campo full">
+              <label>Descripción</label>
+              <textarea id="producto-descripcion"></textarea>
+            </div>
+            <div class="campo full">
+              <label>Fotos (podés elegir varias)</label>
+              <input type="file" id="producto-imagenes" multiple accept="image/*">
+              <div class="preview-fotos" id="preview-fotos"></div>
+              <div class="preview-fotos" id="fotos-actuales"></div>
+            </div>
+          </div>
+          <button type="button" class="btn-cancelar" id="btn-cancelar-edicion" style="display:none;">Cancelar edición</button>
+          <button type="submit" class="btn-guardar" id="btn-guardar-producto">Guardar producto</button>
+          <p class="error-msg" id="producto-error"></p>
+        </form>
+      </div>
+
+      <div class="tarjeta">
+        <h2>Productos cargados</h2>
+        <div style="overflow-x:auto;">
+          <table class="tabla-productos">
+            <thead>
+              <tr>
+                <th>Foto</th><th>Código</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Estado</th><th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-productos-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: Configuración -->
+    <div id="tab-config" style="display:none;">
+      <div class="tarjeta">
+        <h2>Datos de contacto y WhatsApp</h2>
+        <form id="form-config">
+          <div class="campo">
+            <label>Número de WhatsApp (con código de país, sin + ni espacios)</label>
+            <input type="text" id="config-whatsapp" placeholder="5493515646612" required>
+          </div>
+          <div class="campo">
+            <label>Nombre de la tienda</label>
+            <input type="text" id="config-nombre" required>
+          </div>
+          <div class="campo">
+            <label>Mensaje de saludo (encabezado del pedido por WhatsApp)</label>
+            <textarea id="config-mensaje"></textarea>
+          </div>
+          <button type="submit" class="btn-guardar">Guardar configuración</button>
+          <p class="error-msg" id="config-error"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
