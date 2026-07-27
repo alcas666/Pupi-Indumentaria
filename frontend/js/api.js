@@ -1,13 +1,10 @@
-// Como el backend sirve también el frontend, usamos rutas relativas.
-const API_BASE = '/api';
+// Reemplaza esta URL por la URL pública que te dio Render (sin la barra '/' al final)
+const API_BASE = 'https://pupi-indumentaria.onrender.com/'; 
 
-async function apiGet(ruta, token) {
-  const headers = {};
-  if (token) headers['Authorization'] = `Bearer ${token}`;
-  const res = await fetch(`${API_BASE}${ruta}`, { headers });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || 'Error de red');
-  return data;
+async function apiGet(ruta) {
+  const res = await fetch(`${API_BASE}${ruta}`);
+  if (!res.ok) throw new Error('Error de red');
+  return await res.json();
 }
 
 async function apiEnviar(ruta, metodo, cuerpo, token, esFormData = false) {
